@@ -45,6 +45,7 @@ button:active {
     font-family: monospace;
     align-items: center;
     justify-content: flex-end;
+    flex-flow: wrap;
     width: 406px;
     height: 60px;
     margin: 0px;

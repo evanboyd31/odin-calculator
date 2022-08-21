@@ -48,24 +48,25 @@ deleteButton.addEventListener('click', backspace);
 function updateDisplay(e) {
 
     if (operator === ' ') {
-        if (displayDiv.textContent === "0" || displayDiv.textContent === "NaN" || displayDiv.textContent === errorString) {
+        if (displayDiv.textContent === "0") {
             displayDiv.textContent = e.target.textContent;
         } else {
             displayDiv.textContent += e.target.textContent;
         }
     }
+
     if (operator !== ' ' && secondDisplayNum === firstDisplayNum) {
         displayDiv.textContent = e.target.textContent;
     } else if (operator !== ' ') {
-        displayDiv.textContent += e.target.textContent;
+        if (displayDiv.textContent === "0") {
+            displayDiv.textContent = e.target.textContent;
+        } else {
+            displayDiv.textContent += e.target.textContent;
+        }
     }
 
     if (operator === ' ') {
-        if (displayDiv.textContent !== "NaN" || displayDiv.textContent !== errorString) {
-            firstDisplayNum = Number(displayDiv.textContent);
-        } else {
-            firstDisplayNum = 0;
-        }
+        firstDisplayNum = 0;
     } else {
         secondDisplayNum = Number(displayDiv.textContent);
     }
@@ -73,12 +74,7 @@ function updateDisplay(e) {
 
 function operatorSelected(e) {
     if (operator === ' ') {
-        if (displayDiv.textContent !== "NaN" || displayDiv.textContent !== errorString) {
-            firstDisplayNum = Number(displayDiv.textContent);
-        } else {
-            firstDisplayNum = 0;
-        }
-
+        firstDisplayNum = Number(displayDiv.textContent);
         secondDisplayNum = firstDisplayNum;
         operator = e.target.textContent;
     } else {
@@ -111,7 +107,7 @@ function evaluate(e) {
                 if (secondDisplayNum !== 0) {
                     result = divide(firstDisplayNum, secondDisplayNum);
                 } else {
-                    displayDiv.textContent = "Error";
+                    window.alert("You can't divide by zero!");
                     return;
                 }
                 break;
@@ -121,13 +117,12 @@ function evaluate(e) {
         secondDisplayNum = firstDisplayNum;
         operator = ' ';
         displayDiv.textContent = result;
-
     }
 }
 
 function clear() {
     firstDisplayNum = 0;
-    secondDisplayNum = undefined;
+    secondDisplayNum = firstDisplayNum;
     result = 0;
     displayDiv.textContent = "0";
     operator = ' ';

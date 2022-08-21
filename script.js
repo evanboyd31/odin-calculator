@@ -43,17 +43,31 @@ equalsButton.addEventListener('click', evaluate);
 clearButton.addEventListener('click', clear);
 
 function updateDisplay(e) {
-    if (displayDiv.textContent === "0" || firstDisplayNum === result) {
-        displayDiv.textContent = e.target.textContent;
-    } else {
-        displayDiv.textContent += e.target.textContent;
+
+    if (operator === ' ') {
+        if (displayDiv.textContent === "0") {
+            displayDiv.textContent = e.target.textContent;
+        } else {
+            displayDiv.textContent += e.target.textContent;
+        }
     }
+    if (operator !== ' ' && secondDisplayNum === firstDisplayNum) {
+        displayDiv.textContent = e.target.textContent;
+    }
+
+    if (operator === ' ') {
+        firstDisplayNum = Number(displayDiv.textContent);
+    } else {
+        secondDisplayNum = Number(displayDiv.textContent);
+    }
+    console.log(firstDisplayNum);
+    console.log(secondDisplayNum);
 }
 
 function operatorSelected(e) {
     firstDisplayNum = Number(displayDiv.textContent);
+    secondDisplayNum = firstDisplayNum;
     operator = e.target.textContent;
-    displayDiv.textContent = "0";
 }
 
 function evaluate(e) {
@@ -76,7 +90,7 @@ function evaluate(e) {
                 break;
         }
         firstDisplayNum = result;
-        secondDisplayNum = 0;
+        secondDisplayNum = firstDisplayNum;
         operator = ' ';
         displayDiv.textContent = result;
     }
@@ -84,7 +98,7 @@ function evaluate(e) {
 
 function clear() {
     firstDisplayNum = 0;
-    secondDisplayNum = 0;
+    secondDisplayNum = undefined;
     result = 0;
     displayDiv.textContent = "0";
     operator = ' ';

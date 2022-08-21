@@ -21,6 +21,7 @@ let firstDisplayNum = "0";
 let secondDisplayNum;
 let result;
 let operator = ' ';
+const errorString = "Error";
 
 
 zeroButton.addEventListener('click', updateDisplay);
@@ -47,7 +48,7 @@ deleteButton.addEventListener('click', backspace);
 function updateDisplay(e) {
 
     if (operator === ' ') {
-        if (displayDiv.textContent === "0") {
+        if (displayDiv.textContent === "0" || displayDiv.textContent !== "NaN" || displayDiv.textContent !== errorString) {
             displayDiv.textContent = e.target.textContent;
         } else {
             displayDiv.textContent += e.target.textContent;
@@ -60,7 +61,11 @@ function updateDisplay(e) {
     }
 
     if (operator === ' ') {
-        firstDisplayNum = Number(displayDiv.textContent);
+        if (displayDiv.textContent !== "NaN" || displayDiv.textContent !== errorString) {
+            firstDisplayNum = Number(displayDiv.textContent);
+        } else {
+            firstDisplayNum = 0;
+        }
     } else {
         secondDisplayNum = Number(displayDiv.textContent);
     }
@@ -68,7 +73,12 @@ function updateDisplay(e) {
 
 function operatorSelected(e) {
     if (operator === ' ') {
-        firstDisplayNum = Number(displayDiv.textContent);
+        if (displayDiv.textContent !== "NaN" || displayDiv.textContent !== errorString) {
+            firstDisplayNum = Number(displayDiv.textContent);
+        } else {
+            firstDisplayNum = 0;
+        }
+
         secondDisplayNum = firstDisplayNum;
         operator = e.target.textContent;
     } else {
@@ -98,13 +108,20 @@ function evaluate(e) {
                 result = multiply(firstDisplayNum, secondDisplayNum);
                 break;
             case '/':
-                result = divide(firstDisplayNum, secondDisplayNum);
+                if (secondDisplayNum !== 0) {
+                    result = divide(firstDisplayNum, secondDisplayNum);
+                } else {
+                    displayDiv.textContent = "Error";
+                    return;
+                }
                 break;
         }
+
         firstDisplayNum = result;
         secondDisplayNum = firstDisplayNum;
         operator = ' ';
         displayDiv.textContent = result;
+
     }
 }
 

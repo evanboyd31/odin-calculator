@@ -65,9 +65,15 @@ function updateDisplay(e) {
 }
 
 function operatorSelected(e) {
-    firstDisplayNum = Number(displayDiv.textContent);
-    secondDisplayNum = firstDisplayNum;
-    operator = e.target.textContent;
+    if (operator === ' ') {
+        firstDisplayNum = Number(displayDiv.textContent);
+        secondDisplayNum = firstDisplayNum;
+        operator = e.target.textContent;
+    } else {
+        evaluate(e);
+        operator = e.target.textContent;
+    }
+
 }
 
 function evaluate(e) {

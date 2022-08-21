@@ -136,7 +136,7 @@ function evaluate(e) {
         firstDisplayNum = result;
         secondDisplayNum = firstDisplayNum;
         operator = ' ';
-        displayDiv.textContent = result.toFixed(2);
+        displayDiv.textContent = Math.round(result * 100) / 100;
     }
 }
 

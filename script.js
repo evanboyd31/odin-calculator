@@ -14,6 +14,7 @@ const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide");
 const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#AC")
+const deleteButton = document.querySelector("#backspace");
 const displayDiv = document.querySelector(".display");
 
 let firstDisplayNum = "0";
@@ -41,6 +42,7 @@ divideButton.addEventListener('click', operatorSelected);
 
 equalsButton.addEventListener('click', evaluate);
 clearButton.addEventListener('click', clear);
+deleteButton.addEventListener('click', backspace);
 
 function updateDisplay(e) {
 
@@ -53,6 +55,8 @@ function updateDisplay(e) {
     }
     if (operator !== ' ' && secondDisplayNum === firstDisplayNum) {
         displayDiv.textContent = e.target.textContent;
+    } else if (operator !== ' ') {
+        displayDiv.textContent += e.target.textContent;
     }
 
     if (operator === ' ') {
@@ -60,8 +64,6 @@ function updateDisplay(e) {
     } else {
         secondDisplayNum = Number(displayDiv.textContent);
     }
-    console.log(firstDisplayNum);
-    console.log(secondDisplayNum);
 }
 
 function operatorSelected(e) {
@@ -74,6 +76,10 @@ function operatorSelected(e) {
         operator = e.target.textContent;
     }
 
+}
+
+function backspace(e) {
+    displayDiv.textContent = displayDiv.textContent.slice(0, displayDiv.textContent.length - 1);
 }
 
 function evaluate(e) {

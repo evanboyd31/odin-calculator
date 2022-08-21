@@ -48,7 +48,7 @@ deleteButton.addEventListener('click', backspace);
 function updateDisplay(e) {
 
     if (operator === ' ') {
-        if (displayDiv.textContent === "0") {
+        if (displayDiv.textContent === "0" || Number(displayDiv.textContent) === result) {
             displayDiv.textContent = e.target.textContent;
         } else {
             displayDiv.textContent += e.target.textContent;

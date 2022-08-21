@@ -8,19 +8,29 @@ body {
 
 .calculator {
     display: flex;
-    margin: 0 auto;
     align-self: center;
-    width: 450px;
+    width: 415px;
     flex-direction: column;
     align-content: stretch;
+    background-color: grey;
+    padding: 16px;
+    gap: 8px;
 }
 
 button {
     width: 100px;
     height: 80px;
+    padding: 16px;
 }
 
 .display {
-    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 412px;
+    height: 60px;
+    padding: 0px;
+    margin: 0px;
     text-align: right;
+    background-color: white;
 }

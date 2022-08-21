@@ -48,7 +48,7 @@ deleteButton.addEventListener('click', backspace);
 function updateDisplay(e) {
 
     if (operator === ' ') {
-        if (displayDiv.textContent === "0" || displayDiv.textContent !== "NaN" || displayDiv.textContent !== errorString) {
+        if (displayDiv.textContent === "0" || displayDiv.textContent === "NaN" || displayDiv.textContent === errorString) {
             displayDiv.textContent = e.target.textContent;
         } else {
             displayDiv.textContent += e.target.textContent;

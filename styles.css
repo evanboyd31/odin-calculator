@@ -4,7 +4,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #F8F0E3;
 }
+
+
 
 .calculator {
     display: flex;
@@ -15,6 +18,8 @@ body {
     background-color: grey;
     padding: 16px;
     gap: 8px;
+    border: 6px solid black;
+    border-radius: 20px;
 }
 
 button {
@@ -23,6 +28,7 @@ button {
     padding: 16px;
     border-radius: 12px;
     border: 2px solid black;
+    font-size: 20px;
 }
 
 button:hover {
@@ -36,28 +42,36 @@ button:active {
 
 .display {
     display: flex;
+    font-family: monospace;
     align-items: center;
     justify-content: flex-end;
-    width: 412px;
+    width: 406px;
     height: 60px;
-    padding: 0px;
     margin: 0px;
+    padding: 0px;
+    font-size: 40px;
     text-align: right;
     background-color: white;
+    border-radius: 12px;
+    border: 2px solid black;
 }
 
 .misc-button {
     background-color: orangered;
+    font-family: monospace;
 }
 
 .operator-button {
     background-color: #4287f5;
+    font-family: monospace;
 }
 
 .number-button {
     background-color: #f542ef;
+    font-family: monospace;
 }
 
 #equals {
     background-color: #42f55a;
+    font-family: monospace;
 }

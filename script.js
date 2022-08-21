@@ -16,6 +16,7 @@ const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#AC")
 const deleteButton = document.querySelector("#backspace");
 const plusMinusButton = document.querySelector("#plus-minus")
+const decimalButton = document.querySelector("#decimal");
 const displayDiv = document.querySelector(".display");
 
 let firstDisplayNum = "0";
@@ -46,6 +47,7 @@ equalsButton.addEventListener('click', evaluate);
 clearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', backspace);
 plusMinusButton.addEventListener('click', plusMinus);
+decimalButton.addEventListener('click', addDecimal);
 
 function updateDisplay(e) {
 
@@ -99,6 +101,13 @@ function plusMinus(e) {
     }
 }
 
+function addDecimal(e) {
+    let currentDisplayText = displayDiv.textContent;
+    if (currentDisplayText.indexOf('.') === -1) {
+        displayDiv.textContent += ".";
+    }
+}
+
 function evaluate(e) {
     if (operator === ' ') {
         return;
@@ -127,7 +136,7 @@ function evaluate(e) {
         firstDisplayNum = result;
         secondDisplayNum = firstDisplayNum;
         operator = ' ';
-        displayDiv.textContent = result;
+        displayDiv.textContent = result.toFixed(2);
     }
 }
 

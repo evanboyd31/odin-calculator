@@ -21,6 +21,17 @@ button {
     width: 100px;
     height: 80px;
     padding: 16px;
+    border-radius: 12px;
+    border: 2px solid black;
+}
+
+button:hover {
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+button:active {
+    opacity: 0.5;
 }
 
 .display {
@@ -33,4 +44,20 @@ button {
     margin: 0px;
     text-align: right;
     background-color: white;
+}
+
+.misc-button {
+    background-color: orangered;
+}
+
+.operator-button {
+    background-color: #4287f5;
+}
+
+.number-button {
+    background-color: #f542ef;
+}
+
+#equals {
+    background-color: #42f55a;
 }

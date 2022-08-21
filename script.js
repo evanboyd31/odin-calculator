@@ -13,11 +13,14 @@ const subtractButton = document.querySelector("#subtract");
 const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide");
 const equalsButton = document.querySelector("#equals");
+const clearButton = document.querySelector("#AC")
 const displayDiv = document.querySelector(".display");
 
 let firstDisplayNum = "0";
 let secondDisplayNum;
-let operator;
+let result;
+let operator = ' ';
+
 
 zeroButton.addEventListener('click', updateDisplay);
 oneButton.addEventListener('click', updateDisplay);
@@ -37,9 +40,10 @@ multiplyButton.addEventListener('click', operatorSelected);
 divideButton.addEventListener('click', operatorSelected);
 
 equalsButton.addEventListener('click', evaluate);
+clearButton.addEventListener('click', clear);
 
 function updateDisplay(e) {
-    if (displayDiv.textContent === "0") {
+    if (displayDiv.textContent === "0" || firstDisplayNum === result) {
         displayDiv.textContent = e.target.textContent;
     } else {
         displayDiv.textContent += e.target.textContent;
@@ -53,12 +57,10 @@ function operatorSelected(e) {
 }
 
 function evaluate(e) {
-    if (operator === undefined) {
+    if (operator === ' ') {
         return;
     } else {
         secondDisplayNum = Number(displayDiv.textContent);
-
-        let result;
         switch (operator) {
             case '+':
                 result = add(firstDisplayNum, secondDisplayNum);
@@ -73,9 +75,19 @@ function evaluate(e) {
                 result = divide(firstDisplayNum, secondDisplayNum);
                 break;
         }
-        operator === undefined;
+        firstDisplayNum = result;
+        secondDisplayNum = 0;
+        operator = ' ';
         displayDiv.textContent = result;
     }
+}
+
+function clear() {
+    firstDisplayNum = 0;
+    secondDisplayNum = 0;
+    result = 0;
+    displayDiv.textContent = "0";
+    operator = ' ';
 }
 
 function add(num1, num2) {

@@ -15,6 +15,7 @@ const divideButton = document.querySelector("#divide");
 const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#AC")
 const deleteButton = document.querySelector("#backspace");
+const plusMinusButton = document.querySelector("#plus-minus")
 const displayDiv = document.querySelector(".display");
 
 let firstDisplayNum = "0";
@@ -44,6 +45,7 @@ divideButton.addEventListener('click', operatorSelected);
 equalsButton.addEventListener('click', evaluate);
 clearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', backspace);
+plusMinusButton.addEventListener('click', plusMinus);
 
 function updateDisplay(e) {
 
@@ -86,6 +88,15 @@ function operatorSelected(e) {
 
 function backspace(e) {
     displayDiv.textContent = displayDiv.textContent.slice(0, displayDiv.textContent.length - 1);
+}
+
+function plusMinus(e) {
+    let currentDisplayText = displayDiv.textContent;
+    if (currentDisplayText.charAt(0) !== '-') {
+        displayDiv.textContent = '-' + currentDisplayText;
+    } else {
+        displayDiv.textContent = currentDisplayText.slice(1, currentDisplayText.length);
+    }
 }
 
 function evaluate(e) {
